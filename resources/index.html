@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTTP Server</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ==================== 登录注册页面 ==================== -->
+    <div id="authPage" class="page active">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h1>🌐 Simple HTTP Server</h1>
+                <p>基于Java Socket API实现的HTTP服务器</p>
+            </div>
+            
+            <div class="auth-box">
+                <!-- Tab切换按钮 -->
+                <div class="auth-tabs">
+                    <button class="tab-btn active" data-tab="login">登录</button>
+                    <button class="tab-btn" data-tab="register">注册</button>
+                </div>
+                
+                <!-- 登录表单 -->
+                <div id="loginTab" class="tab-content active">
+                    <form id="loginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="loginUsername">用户名</label>
+                            <input type="text" id="loginUsername" placeholder="请输入用户名" 
+                                   required minlength="3" maxlength="20">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">密码</label>
+                            <input type="password" id="loginPassword" placeholder="请输入密码" 
+                                   required minlength="6">
+                        </div>
+                        <div id="loginMessage" class="message"></div>
+                        <button type="submit" class="btn btn-primary">登 录</button>
+                    </form>
+                </div>
+                
+                <!-- 注册表单 -->
+                <div id="registerTab" class="tab-content">
+                    <form id="registerForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="regUsername">用户名</label>
+                            <input type="text" id="regUsername" placeholder="3-20个字符" 
+                                   required minlength="3" maxlength="20">
+                        </div>
+                        <div class="form-group">
+                            <label for="regPassword">密码</label>
+                            <input type="password" id="regPassword" placeholder="至少6个字符" 
+                                   required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="regConfirmPassword">确认密码</label>
+                            <input type="password" id="regConfirmPassword" placeholder="再次输入密码" 
+                                   required minlength="6">
+                        </div>
+                        <div id="registerMessage" class="message"></div>
+                        <button type="submit" class="btn btn-primary">注 册</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="auth-footer">
+                <p>计算机网络课程大作业 - 2025</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 主页面（登录后显示） ==================== -->
+    <div id="mainPage" class="page">
+        <div class="container">
+            <header>
+                <div class="header-top">
+                    <h1>🌐 Simple HTTP Server</h1>
+                    <div class="user-info">
+                        <span class="welcome-text">👤 欢迎，<strong id="displayUsername"></strong></span>
+                        <button id="logoutBtn" class="btn btn-logout">退出登录</button>
+                    </div>
+                </div>
+                <p>基于Java Socket API实现的HTTP服务器</p>
+            </header>
+
+            <main>
+                <!-- 用户信息卡片 -->
+                <section class="user-card">
+                    <div class="card-icon">🎉</div>
+                    <div class="card-content">
+                        <h3>登录成功！</h3>
+                        <p>用户名：<span id="cardUsername"></span></p>
+                        <p>Token：<code id="userToken"></code></p>
+                        <p>登录时间：<span id="loginTime"></span></p>
+                    </div>
+                </section>
+
+                <!-- 功能特性 -->
+                <section class="features">
+                    <h2>✨ 功能特性</h2>
+                    <ul>
+                        <li>✅ 支持GET和POST请求</li>
+                        <li>✅ HTTP长连接 (Keep-Alive)</li>
+                        <li>✅ 多种MIME类型支持</li>
+                        <li>✅ 304缓存机制</li>
+                        <li>✅ 301/302重定向</li>
+                        <li>✅ 用户注册/登录API</li>
+                    </ul>
+                </section>
+
+                <!-- API文档 -->
+                <section class="api-docs">
+                    <h2>📚 API文档</h2>
+                    
+                    <div class="api-item">
+                        <h3>用户注册</h3>
+                        <code class="api-badge">POST /api/register</code>
+                        <pre>{
+    "username": "your_username",
+    "password": "your_password"
+}</pre>
+                    </div>
+
+                    <div class="api-item">
+                        <h3>用户登录</h3>
+                        <code class="api-badge">POST /api/login</code>
+                        <pre>{
+    "username": "your_username",
+    "password": "your_password"
+}</pre>
+                    </div>
+
+                    <div class="api-item">
+                        <h3>服务器状态</h3>
+                        <code class="api-badge">GET /api/status</code>
+                    </div>
+                </section>
+
+                <!-- API测试区域 -->
+                <section class="test-section">
+                    <h2>🧪 功能验证测试</h2>
+                    
+                    <!-- 1. 状态码测试 -->
+                    <div class="test-category">
+                        <h3>📊 状态码测试 (200/301/302/304/404/405/500)</h3>
+                        <div class="test-buttons">
+                            <button class="btn btn-test btn-2xx" onclick="testEndpoint('/api/status')">
+                                <span class="btn-code">200</span> GET /api/status
+                            </button>
+                            <button class="btn btn-test btn-3xx" onclick="testEndpoint('/old-page')">
+                                <span class="btn-code">301</span> 永久重定向
+                            </button>
+                            <button class="btn btn-test btn-3xx" onclick="testEndpoint('/temp-redirect')">
+                                <span class="btn-code">302</span> 临时重定向
+                            </button>
+                            <button class="btn btn-test btn-3xx" onclick="test304Cache()">
+                                <span class="btn-code">304</span> 缓存测试
+                            </button>
+                            <button class="btn btn-test btn-4xx" onclick="testEndpoint('/not-found')">
+                                <span class="btn-code">404</span> 页面不存在
+                            </button>
+                            <button class="btn btn-test btn-4xx" onclick="test405()">
+                                <span class="btn-code">405</span> 方法不允许
+                            </button>
+                            <button class="btn btn-test btn-5xx" onclick="test500()">
+                                <span class="btn-code">500</span> 服务器错误
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 2. HTTP方法测试 -->
+                    <div class="test-category">
+                        <h3>📤 HTTP方法测试 (GET/POST)</h3>
+                        <div class="test-buttons">
+                            <button class="btn btn-test btn-get" onclick="testGET()">
+                                <span class="btn-method">GET</span> 获取静态资源
+                            </button>
+                            <button class="btn btn-test btn-post" onclick="testPOST()">
+                                <span class="btn-method">POST</span> 提交JSON数据
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 3. Keep-Alive测试 -->
+                    <div class="test-category">
+                        <h3>🔗 Keep-Alive 长连接测试</h3>
+                        <div class="test-buttons">
+                            <button class="btn btn-test btn-keepalive" onclick="testKeepAlive()">
+                                <span class="btn-icon">🔄</span> 连续发送多个请求
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 4. MIME类型测试 -->
+                    <div class="test-category">
+                        <h3>📁 MIME类型测试</h3>
+                        <div class="test-buttons">
+                            <button class="btn btn-test btn-mime" onclick="testMime('html')">
+                                <span class="btn-mime-type">text/html</span>
+                            </button>
+                            <button class="btn btn-test btn-mime" onclick="testMime('css')">
+                                <span class="btn-mime-type">text/css</span>
+                            </button>
+                            <button class="btn btn-test btn-mime" onclick="testMime('js')">
+                                <span class="btn-mime-type">application/javascript</span>
+                            </button>
+                            <button class="btn btn-test btn-mime" onclick="testMime('json')">
+                                <span class="btn-mime-type">application/json</span>
+                            </button>
+                            <button class="btn btn-test btn-mime btn-binary" onclick="testMime('png')">
+                                <span class="btn-mime-type">image/png</span> (非文本)
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 测试结果显示 -->
+                    <div id="testResult" class="test-result">
+                        <p class="placeholder">👆 点击上方按钮测试各项功能</p>
+                    </div>
+                    
+                    <!-- 验证清单 -->
+                    <div class="verification-checklist">
+                        <h3>✅ 功能验证清单</h3>
+                        <ul id="checkList">
+                            <li data-check="client-request">HTTP客户端发送请求报文、呈现响应报文</li>
+                            <li data-check="client-redirect">HTTP客户端处理301、302、304状态码</li>
+                            <li data-check="server-methods">HTTP服务器端支持GET和POST请求</li>
+                            <li data-check="server-status">HTTP服务器端支持200、301、302、304、404、405、500状态码</li>
+                            <li data-check="keep-alive">HTTP服务器端实现长连接 (Keep-Alive)</li>
+                            <li data-check="mime-types">MIME至少支持三种类型，包含一种非文本类型</li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+
+            <footer>
+                <p>计算机网络课程大作业 - 2024</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "name": "Simple HTTP Server",
+    "version": "1.0.0",
+    "description": "A simple HTTP server and client based on Java Socket API",
+    "author": "Student",
+    "features": [
+        "GET and POST request support",
+        "HTTP Keep-Alive",
+        "MIME types support",
+        "304 caching mechanism",
+        "301/302 redirects",
+        "User registration and login API"
+    ]
+}

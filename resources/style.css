@@ -1,0 +1,1030 @@
+/* Simple HTTP Server - Stylesheet */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+/* ==================== 页面切换 ==================== */
+.page {
+    display: none;
+    min-height: 100vh;
+}
+
+.page.active {
+    display: block;
+}
+
+/* ==================== 登录注册页面 ==================== */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.auth-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.auth-header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.auth-box {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.auth-tabs {
+    display: flex;
+    margin-bottom: 30px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    font-size: 1em;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.tab-btn:hover {
+    color: #667eea;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-form .form-group {
+    margin-bottom: 20px;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1em;
+    transition: all 0.3s;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.auth-form input::placeholder {
+    color: #aaa;
+}
+
+.message {
+    margin-bottom: 15px;
+    min-height: 24px;
+}
+
+.msg {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.95em;
+}
+
+.msg-error {
+    background: #fff5f5;
+    color: #e53e3e;
+    border: 1px solid #feb2b2;
+}
+
+.msg-success {
+    background: #f0fff4;
+    color: #38a169;
+    border: 1px solid #9ae6b4;
+}
+
+.msg-info {
+    background: #ebf8ff;
+    color: #3182ce;
+    border: 1px solid #90cdf4;
+}
+
+.btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.auth-footer {
+    margin-top: 30px;
+    text-align: center;
+    color: white;
+    opacity: 0.7;
+}
+
+/* ==================== 主页面 ==================== */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 30px 0;
+    color: white;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.header-top h1 {
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.welcome-text {
+    font-size: 1em;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+
+.btn-logout {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 8px 16px;
+    font-size: 0.9em;
+}
+
+.btn-logout:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+main {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+section {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+h3 {
+    color: #444;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+/* 用户信息卡片 */
+.user-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.card-icon {
+    font-size: 3em;
+}
+
+.card-content h3 {
+    color: white;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    margin: 5px 0;
+    opacity: 0.9;
+}
+
+.card-content code {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.85em;
+}
+
+/* 功能特性 */
+.features ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.features li {
+    padding: 12px 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.features li:hover {
+    transform: translateX(5px);
+    background: #e9ecef;
+}
+
+/* API文档 */
+.api-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.api-badge {
+    display: inline-block;
+    background: #667eea;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.api-item pre {
+    background: #282c34;
+    color: #abb2bf;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+/* API测试区域 */
+.test-section .test-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-test {
+    background: #f8f9fa;
+    color: #667eea;
+    border: 2px solid #667eea;
+    padding: 10px 16px;
+    font-size: 0.9em;
+}
+
+.btn-test:hover {
+    background: #667eea;
+    color: white;
+}
+
+.test-result {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 100px;
+}
+
+.test-result .placeholder {
+    color: #999;
+    text-align: center;
+    padding: 30px;
+}
+
+.test-result .loading {
+    color: #667eea;
+    text-align: center;
+    padding: 30px;
+}
+
+.response-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.response-info .method {
+    background: #667eea;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.response-info .url {
+    font-family: monospace;
+    color: #333;
+}
+
+.response-info .status {
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.status-2xx { background: #d4edda; color: #155724; }
+.status-3xx { background: #fff3cd; color: #856404; }
+.status-4xx { background: #f8d7da; color: #721c24; }
+.status-5xx { background: #f8d7da; color: #721c24; }
+
+.response-info .duration {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.response-headers, .response-body {
+    margin-top: 15px;
+}
+
+.response-headers pre, .response-body pre {
+    background: #282c34;
+    color: #abb2bf;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.85em;
+    margin-top: 8px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    color: white;
+    opacity: 0.8;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .header-top h1 {
+        font-size: 1.5em;
+    }
+    
+    .user-info {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .auth-box {
+        padding: 30px 20px;
+    }
+    
+    .user-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .test-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-test {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-header h1 {
+        font-size: 1.8em;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    main {
+        padding: 20px 15px;
+    }
+}
+
+/* ==================== 重定向链路样式 ==================== */
+.redirect-chain h4 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.redirect-step {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.redirect-step:not(:last-child)::after {
+    content: '↓';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2em;
+    color: #667eea;
+    z-index: 1;
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.step-num {
+    background: #667eea;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.step-result {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.redirect-arrow {
+    color: #667eea;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.redirect-location {
+    background: #e8f4fd;
+    color: #1976d2;
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-family: monospace;
+}
+
+/* ==================== 304缓存测试样式 ==================== */
+.cache-test h4 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.test-step {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.test-step .step-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+    color: #444;
+}
+
+.request-info {
+    margin-bottom: 15px;
+}
+
+.request-info pre {
+    background: #2d3748;
+    color: #e2e8f0;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 0.85em;
+    overflow-x: auto;
+    margin-top: 8px;
+}
+
+.cache-result {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.cache-result.success {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.cache-result.info {
+    background: #e8f4fd;
+    border: 1px solid #b3d7ff;
+}
+
+.cache-result.warning {
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+}
+
+.cache-result .icon {
+    font-size: 1.5em;
+}
+
+.cache-result .text strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.cache-result .text p {
+    margin: 3px 0;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.test-explanation {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.test-explanation h5 {
+    color: #667eea;
+    margin-bottom: 12px;
+}
+
+.test-explanation ol {
+    margin-left: 20px;
+}
+
+.test-explanation li {
+    margin-bottom: 8px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.test-explanation code {
+    background: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #e83e8c;
+}
+
+/* ==================== 测试按钮样式优化 ==================== */
+.test-category {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.test-category:last-of-type {
+    border-bottom: none;
+}
+
+.test-category h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.test-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btn-test {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-code, .btn-method, .btn-mime-type, .btn-icon {
+    font-weight: 700;
+}
+
+/* 状态码按钮颜色 */
+.btn-2xx {
+    background: #d4edda;
+    color: #155724;
+    border: 2px solid #28a745;
+}
+.btn-2xx:hover {
+    background: #28a745;
+    color: white;
+}
+
+.btn-3xx {
+    background: #fff3cd;
+    color: #856404;
+    border: 2px solid #ffc107;
+}
+.btn-3xx:hover {
+    background: #ffc107;
+    color: #333;
+}
+
+.btn-4xx {
+    background: #f8d7da;
+    color: #721c24;
+    border: 2px solid #dc3545;
+}
+.btn-4xx:hover {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-5xx {
+    background: #e2d5f1;
+    color: #4a235a;
+    border: 2px solid #8e44ad;
+}
+.btn-5xx:hover {
+    background: #8e44ad;
+    color: white;
+}
+
+/* HTTP方法按钮 */
+.btn-get {
+    background: #e8f4fd;
+    color: #1565c0;
+    border: 2px solid #2196f3;
+}
+.btn-get:hover {
+    background: #2196f3;
+    color: white;
+}
+
+.btn-post {
+    background: #fce4ec;
+    color: #c2185b;
+    border: 2px solid #e91e63;
+}
+.btn-post:hover {
+    background: #e91e63;
+    color: white;
+}
+
+/* Keep-Alive按钮 */
+.btn-keepalive {
+    background: #e0f2f1;
+    color: #00695c;
+    border: 2px solid #26a69a;
+}
+.btn-keepalive:hover {
+    background: #26a69a;
+    color: white;
+}
+
+/* MIME类型按钮 */
+.btn-mime {
+    background: #f3e5f5;
+    color: #6a1b9a;
+    border: 2px solid #9c27b0;
+}
+.btn-mime:hover {
+    background: #9c27b0;
+    color: white;
+}
+
+.btn-binary {
+    background: #fff8e1;
+    color: #f57f17;
+    border: 2px solid #ff9800;
+}
+.btn-binary:hover {
+    background: #ff9800;
+    color: white;
+}
+
+/* ==================== 验证清单样式 ==================== */
+.verification-checklist {
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    border: 2px solid #667eea40;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+.verification-checklist h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.verification-checklist ul {
+    list-style: none;
+}
+
+.verification-checklist li {
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid #ddd;
+    transition: all 0.3s;
+    position: relative;
+    padding-left: 40px;
+}
+
+.verification-checklist li::before {
+    content: '○';
+    position: absolute;
+    left: 12px;
+    color: #999;
+    font-weight: bold;
+}
+
+.verification-checklist li.verified {
+    border-left-color: #28a745;
+    background: #f0fff4;
+}
+
+.verification-checklist li.verified::before {
+    content: '✓';
+    color: #28a745;
+}
+
+/* ==================== 405/500 测试样式 ==================== */
+.method-test h4,
+.error-test h4 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.method-post {
+    background: #e91e63 !important;
+}
+
+.cache-result.error-result {
+    background: #fce4ec;
+    border: 1px solid #f8bbd9;
+}
+
+.test-explanation ul {
+    margin-left: 20px;
+    list-style: disc;
+}
+
+.test-explanation ul li {
+    margin-bottom: 8px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* ==================== Keep-Alive 测试样式 ==================== */
+.keepalive-test h4 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.test-intro {
+    background: #e8f4fd;
+    border-left: 4px solid #2196f3;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 0 8px 8px 0;
+}
+
+.test-intro p {
+    margin: 0;
+    color: #1565c0;
+}
+
+.request-timeline {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.request-timeline h5 {
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    position: relative;
+}
+
+.timeline-num {
+    background: #667eea;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85em;
+    flex-shrink: 0;
+}
+
+.timeline-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+.timeline-url {
+    font-family: monospace;
+    color: #333;
+    min-width: 120px;
+}
+
+.timeline-duration {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.timeline-size {
+    color: #999;
+    font-size: 0.85em;
+}
+
+.timeline-bar {
+    height: 6px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 3px;
+    min-width: 10px;
+}
+
+.keepalive-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.stat-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    color: #666;
+    font-size: 0.85em;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    display: block;
+    color: #333;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.log-example {
+    margin-top: 15px;
+    background: #2d3748;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.log-example strong {
+    color: #a0aec0;
+    font-size: 0.9em;
+}
+
+.log-example pre {
+    margin-top: 10px;
+    color: #68d391;
+    font-size: 0.85em;
+    line-height: 1.6;
+}
